@@ -1,8 +1,6 @@
+module XOR(a, b, c);
+  input a, b;
+  output c;
 
-module \XOR  (
-  input a,
-  input b,
-  output c
-);
-  assign c = ~ (~ (a & ~ (a & b)) & ~ (~ (a & b) & b));
+  assign c = a ^ b; 
 endmodule

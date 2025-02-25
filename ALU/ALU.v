@@ -35,7 +35,7 @@ module alu(
                       (control == 3'b001) ? sum :   // SUB
                       (control == 3'b010) ? a_and_b : // AND
                       (control == 3'b011) ? a_or_b :  // OR
-                      (control == 3'b101) ? slt :     // SLT
+                      (control == 3'b100) ? slt :     // SLT
                       16'h0000;
 
     assign result = mux_2;

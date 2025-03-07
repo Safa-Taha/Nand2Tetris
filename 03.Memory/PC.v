@@ -1,11 +1,22 @@
-// Program counter
-module PC(input clk, input load, input inc, input reset,
-          input [15:0] in, output [15:0] out);
+// PC.v
+module PC(
+    input         clk,
+    input         load,
+    input         inc,
+    input         reset,
+    input  [14:0] in,
+    output [14:0] out
+);
+    wire [14:0] next;
+    assign next = reset ? 15'b0 :
+                  load  ? in :
+                  inc   ? out + 1 : out;
 
-wire [15:0] next;
-assign next = reset ? 16'b0 :
-                 load ? in :
-                 inc ? out + 1 : out;
-                 
-Register pc_reg(.clk(clk), .load(1'b1), .in(next), .out(out));
+    // Assume a parameterized Register module (width = 15)
+    Register #(15) pc_reg (
+        .clk(clk),
+        .load(1'b1),
+        .in(next),
+        .out(out)
+    );
 endmodule
